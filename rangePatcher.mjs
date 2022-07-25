@@ -29,13 +29,14 @@ const getComponentKey = (component) => {
 const replaceRanges = (component) => {
     // range RE includes min_range and missile_retarget_range
     const rangesKeys = ['range']
+    console.log(component)
 
     rangesKeys.forEach((rangeKey) => {
         const rangeRE = new RE2(`${rangeKey} = ([0-9]+)`, 'gi')
 
         component = component.replace(rangeRE, (match, offset, input) => {
             const range = parseInt(offset)
-            const newRange = ~~(range / rangeModifier)
+            let newRange = ~~(range / rangeModifier)
 
             // No zeroes!
             if (newRange < 1) {
@@ -87,9 +88,9 @@ fs.readdir('./srcFiles/', (err, files) => {
                         'strike_craft_component_template'
                     )
 
-                    fixAndWriteComponents(weapons)
-                    fixAndWriteComponents(strikecrafts)
+                    if (weapons) fixAndWriteComponents(weapons)
 
+                    if (strikecrafts) fixAndWriteComponents(strikecrafts)
                 } else {
                     console.log(err)
                 }

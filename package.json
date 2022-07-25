@@ -4,7 +4,7 @@
     "description": "",
     "main": "rangePatcher.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "patch": "node rangePatcher.mjs"
     },
     "author": "",
     "license": "ISC",
